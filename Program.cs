@@ -36,28 +36,30 @@
 // b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5)
 
 
-double FindX(int bone, int btwo, int kone, int ktwo){
-    double res = (bone-btwo)/(ktwo-kone);
-    if(ktwo-kone == 0)
+
+
+double FindY(double bone, double btwo, double kone, double ktwo){
+    double res = (kone*btwo - ktwo*bone)/(kone-ktwo);
+    if(kone-ktwo == 0)
         Console.WriteLine("Error because of dividing by zero");
     return res;
 }
 
-double FindY(int bone, int btwo, int kone, int ktwo){
-    double res = kone*((bone-btwo)/(ktwo-kone))+bone;
-    if(ktwo-kone == 0)
+double FindX(double bone, double btwo, double kone, double ktwo){
+    double res = (FindY(bone, btwo, kone, ktwo)/kone) - (bone/kone);
+    if(kone == 0)
         Console.WriteLine("Error because of dividing by zero");
     return res;
 }
 
 Console.WriteLine("Enter the value b1: ");
-int bone = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Enter the value b2: ");
-int btwo = Convert.ToInt32(Console.ReadLine());
+double bone = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Enter the value k1: ");
-int kone = Convert.ToInt32(Console.ReadLine());
+double kone = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter the value b2: ");
+double btwo = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Enter the value k2: ");
-int ktwo = Convert.ToInt32(Console.ReadLine());
+double ktwo = Convert.ToInt32(Console.ReadLine());
 double Xnum = FindX(bone, btwo, kone, ktwo);
 double Ynum = FindY(bone, btwo, kone, ktwo);
 Console.WriteLine($"The junction point of the two Lines is ( {Xnum} ; {Ynum} )");
